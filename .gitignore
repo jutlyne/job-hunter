@@ -18,4 +18,6 @@ carecar-15b47-firebase-adminsdk-qqtjo-32eb00dff1.json
 public/OneSignalSDKUpdaterWorker.js
 public/OneSignalSDKWorker.js
 docker-compose.yml
-public/
+public/rating
+public/summernote
+public/themes

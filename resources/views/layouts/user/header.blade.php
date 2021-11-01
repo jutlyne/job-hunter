@@ -42,7 +42,6 @@
                 </nav>
             @endauth
             @guest('user')
-                <a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a>
                 <ul class="account-btns">
                     <li class="signup-popup"><a title=""><i class="la la-key"></i> Sign Up</a></li>
                     <li class="signin-popup"><a href="{{ route('user.choose_login') }}" title=""><i
@@ -109,7 +108,6 @@
                     </nav>
                 @endauth
                 @guest('user')
-                    <a href="" title="" class="post-job-btn"><i class="la la-plus"></i>Post Jobs</a>
                     <ul class="account-btns">
                         <li class="signup-popup"><a title=""><i class="la la-key"></i> Sign Up</a></li>
                         <li class="signin-popup"><a href="{{ route('user.choose_login') }}" title=""><i

@@ -70,5 +70,6 @@ class Kernel extends HttpKernel
         'type.staff' => \App\Http\Middleware\StaffMiddleware::class,
         'type.user' => \App\Http\Middleware\UserApiMiddleware::class,
         'type.password' => \App\Http\Middleware\ResetPasswordMiddleware::class,
+        'checkstatus' => \App\Http\Middleware\CheckStatus::class,
     ];
 }

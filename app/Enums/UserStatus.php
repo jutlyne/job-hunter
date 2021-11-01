@@ -9,4 +9,5 @@ final class UserStatus extends Enum implements LocalizedEnum
 {
     const ACTIVE = 1;
     const PENDING = 0;
+    const BLOCK = 2;
 }

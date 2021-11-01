@@ -121,6 +121,9 @@
                         })
                     }
 
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    window.location.href = '/login_choose';
                 }
             });
         })

@@ -18,11 +18,12 @@ class ApplicationRepositoryEloquent extends BaseRepository implements Applicatio
         $data = $this->where([
             ['user_id', auth('user')->user()->id],
             ['recruitment_id', $params['id']]
-        ]);
+        ])->get();
 
-        if (!empty($data)) {
+        if (count($data) != 0) {
             return false;
         }
+
         $find = [
             'user_id' => auth('user')->user()->id,
             'recruitment_id' => $params['id']

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\UserStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\RegisterRequest;
-use App\Http\Requests\User\Verify\VerifyCode;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Nexmo\Laravel\Facade\Nexmo;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -20,28 +20,33 @@ class RegisterController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        $to = substr_replace($request->phone, '+84', 0, 1);
-        $code = rand(100000,1000000);
-        $ads = \session()->has('ads') ? \session()->pull('ads') : null;
+        $verification_code = strtoupper(substr(md5(microtime()), rand(0, 26), 6));
 
         $user = User::create([
             'name' => $request->name,
-            'phone' => $request->phone,
+            'email' => $request->email,
             'password' => $request->password,
-            'verification_code' => $code,
-            'ads' => $ads
+            'verification_code' => $verification_code,
+            'status' => UserStatus::ACTIVE
         ]);
+        
+        // $data = [
+        //     'name' => $user->name,
+        //     'body' => $verification_code,
+        //     'mail' => $user->email,
+        //     'password' => $request->password
+        // ];
 
-        Nexmo::message()->send([
-            'to' => $to,
-            'from' => config('app.name'),
-            'text' => "Code: $code",
-            'type' => 'unicode'
-        ]);
+        // $to_email = $user->email;
+
+        // Mail::send('mail.verify', $data, function ($message) use ($to_email) {
+        //     $message->to($to_email)->subject('Gửi mail mã xác nhận đăng ký tài khoản');
+        //     $message->from('support@job-hunter.com', 'Jobs Hunt');
+        // });
 
         Auth::login($user);
 
-        return redirect()->route('user.verify');
+        return redirect()->route('user.profile');
     }
 
     public function showVerifyForm()
@@ -49,41 +54,18 @@ class RegisterController extends Controller
         return view('auth.verify');
     }
 
-    public function sendCodeVerify()
+    public function verify(Request $request)
     {
         $user = auth('user')->user();
-        $to = substr_replace($user->phone, '+84', 0, 1);
-        $code = rand(100000,1000000);
+        if ($user->verification_code == $request->code) {
+            $user->update([
+                'email_verified_at' => Carbon::now(),
+                'verification_code' => null
+            ]);
 
-        Nexmo::message()->send([
-            'to' => $to,
-            'from' => config('app.name'),
-            'text' => "Code: $code",
-            'type' => 'unicode'
-        ]);
+            return redirect('/');
+        } else {
 
-        $user->update(['verification_code' => $code]);
-
-        return response()->json([], 200);
-    }
-
-    public function verify(VerifyCode $request)
-    {
-        $user = auth('user')->user();
-
-        $user->update([
-            'phone_verified_at' => Carbon::now(),
-            'verification_code' => null
-        ]);
-
-        return redirect('/');
-    }
-
-    public function updateDeviceId(Request $request)
-    {
-        $user = auth('user')->user();
-        $user->device_id = $request->input('id');
-        $user->save();
-        return \response()->json([], 200);
+        }
     }
 }

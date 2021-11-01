@@ -30,18 +30,14 @@ class ApplyController extends Controller
 
     public function apply(Request $request)
     {
-        if (!auth('user')) {
-            return view('auth.login');
-        } else {
-            if ($this->applyRepository->userApply($request->all())) {
-                return response()->json([
-                    'status' => true
-                ]);
-            } else {
-                return response()->json([
-                    'status' => false
-                ]);
-            }
+        if ($this->applyRepository->userApply($request->all())) {
+            return response()->json([
+                'status' => true
+            ]);
         }
+
+        return response()->json([
+            'status' => false
+        ]);
     }
 }
