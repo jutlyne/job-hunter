@@ -17,6 +17,7 @@
   + php artisan storage:links
   + php artisan migrate
   + php artisan make:seed
+  + npm run dev
 - Go to AppServiceProvider.php uncomment from line 35 to 43
 ## About Laravel
 

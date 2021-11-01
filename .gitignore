@@ -21,3 +21,4 @@ docker-compose.yml
 public/rating
 public/summernote
 public/themes
+public/custom
