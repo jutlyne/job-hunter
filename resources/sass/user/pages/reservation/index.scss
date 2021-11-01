@@ -1,0 +1,24 @@
+.reservations {
+  &__garage {
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 300px;
+
+    &__image {
+      width: 80px;
+      height: 80px;
+    }
+
+    &__info {
+      width: calc(100% - 100px);
+      margin-left: 20px;
+    }
+  }
+}
+.text_cancel_reason {
+  max-height: 200px;
+  overflow: auto;
+}
+.icon-start-reservation {
+  font-size: 1.5em !important;
+}

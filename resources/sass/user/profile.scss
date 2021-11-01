@@ -1,0 +1,14 @@
+.profile {
+    &__avatar {
+        object-fit: cover;
+        width: 100px;
+        height: 100px;
+        border-radius: 50px;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .profile-input-avatar {
+        width: 100%;
+    }
+}

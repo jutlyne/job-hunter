@@ -1,0 +1,117 @@
+// Here you can add other styles
+.chat__input {
+    padding-top: 20px !important;
+    .border_chat_input {
+        border: 1px solid #aa9e9e !important;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .img-avatar {
+        width: 100% !important;
+        height: auto !important;
+    }
+}
+
+@media screen and (max-width:575px) {
+    .button-add-new-garage {
+        justify-content: inherit !important;
+    }
+    .modal-reservation {
+        width: 80vw;
+        height: 400px;
+        overflow: auto;
+        margin-left: 10vw;
+    }
+    .modal-garages {
+        width: 80vw;
+        margin: 50% 10%;
+    }
+}
+
+    .col-description-service {
+        max-width: 20vw;
+    }
+    .col-name{
+        width: 104px;
+    }
+    .col-quantity-reser {
+        width: 112px;
+    }
+    .col-action {
+        min-width: 100px !important;
+    }
+
+@media screen and (max-width: 769px) {
+    .col-description-service {
+        width: 25vw;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .table-mobile {
+        width: 800px;
+    }
+    .col-description-service {
+        width: 30%;
+    }
+}
+.index-voucher {
+    min-height: 300px;
+    .vouchers {
+        min-width: 1024px;
+        .col-garage {
+            width: 325px !important;
+        }
+        .col-action {
+            width: 130px;
+        }
+        .col-quantity {
+            min-width: 200px;
+        }
+        .col-conten-voucher {
+            width: 20vw;
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .index-voucher {
+        min-height: 300px;
+        .vouchers {
+            min-width: 1024px;
+            .col-garage {
+                min-width: 325px !important;
+            }
+            .col-action {
+                min-width: 50px;
+            }
+            .col-quantity {
+                min-width: 115px;
+            }
+            .col-conten-voucher {
+                width: 30vw;
+            }
+        }
+    }
+}
+@media screen and (max-width: 576px) {
+    .index-voucher {
+        min-height: 300px;
+        .vouchers {
+            min-width: 1024px;
+            .col-garage {
+                min-width: 325px !important;
+            }
+            .col-action {
+                min-width: 50px;
+            }
+            .col-quantity {
+                min-width: 115px;
+            }
+            .col-conten-voucher {
+                width: 65vw;
+            }
+        }
+    }
+}

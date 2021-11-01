@@ -1,0 +1,713 @@
+body#tutor-page {
+    h1 {
+        font-size: 25px;
+        margin-bottom: 20px;
+    }
+    .search-form {
+        margin-bottom: 2rem;
+    }
+}
+
+.invalid {
+    border: 1px solid #f00;
+}
+
+.txtError {
+    color: #f00;
+    font-size: 14px;
+    margin: 10px 10px 0px;
+}
+
+.inform {
+    margin: 0px 4px;
+    font-size: 12px;
+    color: #c00;
+    font-weight: normal;
+}
+
+.next_meeting {
+    box-sizing: border-box;
+    padding: 20px;
+    background: #e5e5e5;
+    margin-bottom: 12px;
+
+    p.enter {
+        text-align: center;
+    }
+
+    p.detail-link {
+        text-align: right;
+        margin-bottom: 0;
+    }
+
+    p.detail-link a {
+        text-decoration: underline;
+    }
+
+    &:last-item {
+        margin-bottom: 0px;
+    }
+}
+
+.meta ul.linkbtns {
+    float: left;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+    display: flex;
+}
+
+ul.pagination-top {
+    list-style: none;
+    padding: 0;
+    float: right;
+}
+
+.meta::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+ul.pagination-top li.total_posts {
+    font-size: 14px;
+    margin-right: 7px;
+}
+
+ul.pagination-top li {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.status span.date {
+    display: block;
+    min-height: 30px;
+}
+
+section.book-date {
+    margin-top: 3rem;
+}
+
+section.book-date h2 {
+    font-size: 20px;
+}
+
+.booking-list {
+    margin: 2rem 0;
+}
+
+.booking-list .bar {
+    background: #afafaf;
+    box-sizing: border-box;
+    padding: 10px;
+    color: #fff;
+    display: block;
+}
+
+.booking-list .bar::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.booking-list .bar > p {
+    margin-bottom: 0;
+}
+
+.booking-list .bar p.triangle {
+    float: right;
+}
+
+.booking-list .bar p.date-time {
+    float: left;
+}
+
+.booking-list .pull-down {
+    border: 1px solid #afafaf;
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+.booking-list .pull-down ul {
+    padding-left: 20px;
+    margin-bottom: 0;
+    line-height: 2;
+}
+
+.booking-list .pull-down p.text-right {
+    margin-bottom: 0;
+    margin-top: 1rem;
+}
+
+.booking-list .pull-down ul a {
+    float: right;
+}
+
+.booking-loop {
+    padding: 0;
+    list-style: none;
+}
+
+.booking-loop li {
+    margin-bottom: 1rem;
+}
+
+.popup-window h3 {
+    font-size: 18px;
+    margin-bottom: 2rem;
+    font-weight: bold;
+}
+
+.popup-window .input_area {
+    background: #afafaf;
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+.popup-window .input_area {
+    display: flex;
+    align-items: flex-end;
+}
+
+.popup-window .input_area h4 {
+    font-size: 12px;
+    color: #fff;
+}
+
+.popup-window .input_area input {
+    width: 77%;
+}
+
+.popup-window .pull-down {
+    margin-top: 2rem;
+}
+
+.popup-window .pull-down li {
+    line-height: 1.7;
+}
+
+.popup-window .pull-down li a {
+    float: right;
+}
+
+
+.month_select {
+    overflow: hidden;
+    width: 20%;
+    text-align: center;
+    position: relative;
+    border: 1px solid #bbbbbb;
+    border-radius: 2px;
+    background: #ffffff;
+}
+.month_select select {
+    width: 100%;
+    padding-right: 1em;
+    cursor: pointer;
+    text-indent: 0.01px;
+    text-overflow: ellipsis;
+    border: none;
+    outline: none;
+    background: transparent;
+    background-image: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+    padding: 8px 38px 8px 8px;
+    color: #666666;
+}
+.month_select select::-ms-expand {
+    display: none;
+}
+
+.month_select::before {
+    position: absolute;
+    top: 0.8em;
+    right: 0.9em;
+    width: 0;
+    height: 0;
+    padding: 0;
+    content: '';
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #666666;
+    pointer-events: none;
+}
+
+.reservation-list {
+    margin-top: 2rem;
+}
+
+.reservation-list > div {
+    border: 1px solid #d0d0d0;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+}
+
+.reservation-box p.date_time {
+    border-bottom: 1px solid #d0d0d0;
+    text-align: center;
+    margin-bottom: 0;
+    font-weight: bold;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.reservation-box .detail::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.reservation-box h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.reservation-box p.meeting-title {
+    font-size: 18px;
+}
+
+.reservation-list .detail {
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.reservation-list .detail .col-sm-9 section:first-child {
+    margin-bottom: 10px;
+}
+
+.reservation-list .detail .message p {
+    margin-bottom: 0;
+}
+
+.reservation-list .detail .user {
+    text-align: center;
+}
+
+.reservation-list .detail .user img {
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+}
+
+.reservation-list .detail .user a {
+    display: block;
+    text-align: center;
+    font-size: 16px;
+}
+
+.user p.user-name {
+    margin-top: 5px;
+}
+
+.reservation-list .detail .user ul {
+    list-style: circle;
+    padding-left: 10px;
+}
+
+.reservation-list .detail .user ul a {
+    display: inline;
+}
+
+.reservation-list .detail .user ul li {
+    text-align: left;
+    line-height: 1.5;
+}
+
+
+/*ブラックリスト*/
+.blacklist {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .box {
+        width: 22%;
+        box-sizing: border-box;
+        border: 1px solid #e7e7e7;
+        padding: 10px;
+        margin: 1%;
+        a {
+            display: block;
+            border-bottom: 1px solid #b7b7bb;
+            margin-bottom: 10px;
+        }
+        img {
+            max-width: 100%;
+        }
+        p.name {
+            margin-top: 10px;
+        }
+    }
+}
+
+/*講師から見るユーザー情報*/
+
+.user-info {
+    .message {
+        margin-bottom: 4rem;
+        input.btn {
+            width: 100%;
+        }
+    }
+    .profile-box{
+        box-sizing: border-box;
+        padding: 20px;
+        border: 1px solid #ccc;
+        .text {
+            h2 {
+                font-size: 20px;
+                font-weight: bold;
+            }
+        }
+        img {
+            max-width: 100%;
+            display: block;
+            margin: auto;
+        }
+    }
+    .block-status {
+        margin-bottom: 4rem;
+        a.text-danger {
+            text-decoration: underline;
+            display: block;
+        }
+        p.block-label {
+            background: #a94442;
+            color: #fff;
+            text-align: center;
+            box-sizing: border-box;
+            padding: 10px;
+            margin-top: 5px;
+        }
+    }
+    .histories {
+        margin-top: 4rem;
+        h2 {
+            font-size: 23px;
+        }
+        li {
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+/*tutorマイページプロフィール*/
+.tutor-thumb {
+    margin-bottom: 10px;
+}
+
+.categories div {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+/*評価コメント一覧*/
+
+.comments {
+    .box {
+        border-bottom: 1px dotted #929292;
+        margin-bottom: 20px;
+        .stars {
+            font-size: 18px;
+            letter-spacing: -2px;
+            color: #e29b2e;
+            margin-bottom: 10px;
+        }
+        p.post_date {
+            text-align: right;
+        }
+    }
+    .d-flex {
+        display: flex;
+        align-items: center;
+        
+        .user-thumb {
+            text-align: center;
+            width: 120px;
+    
+            a {
+                display: block;
+            }
+            img {
+                max-width: 100%;
+            }
+            p.name {
+                margin-top: 7px;
+            }
+        }
+    
+        .content {
+            flex: 1;
+        }
+    }
+}
+
+/*tutor footer*/
+
+#tutor-page {
+    #page-wrapper {
+        padding-bottom: 25px;
+    }
+    footer {
+        margin: 15px 0;
+        p.copy {
+            margin: 0;
+            text-align: center;
+            font-size: 12px;
+        }
+    }
+}
+
+/*tutor mail box*/
+.search-form{
+    .input-group.custom-search-form {
+        width: 35%;
+        float: right;
+    }
+    &::after{
+        content: '';
+        display: block;
+        clear: both;
+    }
+}
+
+ul.message-list {
+    padding: 0;
+    list-style: none;
+    li {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #b9b9b9;
+        background: #f1f1f1;
+        box-sizing: border-box;
+        padding-top: 15px;
+    }
+    li.read {
+        background: #fff;
+    }
+    .favorite {
+        padding: 0 12px;
+        box-sizing: border-box;
+        width: 5%;
+        span.toggle_star::after {
+            content: "\f006";
+            font-family: FontAwesome;
+            text-shadow: 1px 1px 5px #9e9e9e;
+        }
+        span.toggle_star.is_active::after {
+            content: "\f005";
+            font-family: FontAwesome;
+            text-shadow: none;
+            color: #f7ac20;
+        }
+    }
+    .user {
+        box-sizing: border-box;
+        padding: 0 12px;
+        width: 15%;
+        p.mail {
+            margin-top: 5px;
+            font-size: 12px;
+        }
+        img {
+            max-width: 100%;
+            width: 55px;
+            display: block;
+            margin: 0 auto;
+        }
+    }
+    .status {
+        width: 5%;
+    }
+    .excerpt, .status, .date {
+        padding: 0 12px;
+    }
+
+    .excerpt {
+        width: 50%;
+    }
+
+    .date {
+        width: 25%;
+        text-align: right;
+    }
+}
+
+.message-box.show {
+    ul.message-list .user img {
+        width: 40px;
+    }
+    .slide-toggle {
+        display: flex;
+        align-items: center;
+    }
+    .full-text {
+        box-sizing: border-box;
+        padding: 20px;
+    }
+    ul.message-list li {
+        display: block;
+        border: 1px solid #b9b9b9;
+        margin-bottom: 2rem;
+        border: 1px solid #b9b9b9;
+        margin-bottom: 2rem;
+        align-items: center;
+        background: #fff;
+    }
+    ul.message-list li.message-from {
+        border: 1px solid #347ab7;
+    }
+    ul.message-list .user {
+        width: 10%;
+    }
+    ul.message-list .excerpt {
+        width: 65%;
+    }
+}
+
+/* tutor rating result section */
+.rating-content {
+    padding: 30px;
+    border: 3px solid #f1f1f1;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    background: white;
+    .heading {
+        font-size: 25px;
+        margin-right: 25px;
+    }
+    .fa, .far {
+        font-size: 20px;
+        color: #f1ca2a;
+    }
+    .checked {
+        color: #f1ca2a;
+    }
+    .side {
+        float: left;
+        width: 12%;
+        margin-top:10px;
+        .fa {
+            font-size: 14px;
+        }
+    }
+    .middle {
+        margin-top: 17px;
+        float: left;
+        width: 70%;
+    }
+    .right {
+        text-align: right;
+    }
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    .bar-container {
+        width: 100%;
+        background-color: #f1f1f1;
+        text-align: center;
+        color: white;
+    }
+    .bar-5, .bar-4, .bar-3, .bar-2, .bar-1 {
+        width: 100%;
+        height: 14px;
+    }
+    .bar-5 {
+        background-color: #4CAF50;
+    }
+    .bar-4 {
+        background-color: #2196F3;
+    }
+    .bar-3 {
+        background-color: #00bcd4;
+    }
+    .bar-2 {
+        background-color: #ff9800;
+    }
+    .bar-1 {
+        background-color: #f44336;
+    }
+    @media (max-width: 400px) {
+        .side, .middle {
+            width: 100%;
+        }
+        .right {
+            display: none;
+        }
+    }
+}
+/* tutor rating form section */
+.tutor-rating-form {
+    margin-top: 10px;
+    #close-review-box {
+        margin-right: 10px;
+    }
+    .validate-msg {
+        p {
+            text-align: center;
+            margin-bottom: 10px;
+            color: red;
+            font-weight: bolder;
+        }
+    }
+    .animated {
+        -webkit-transition: height 0.2s;
+        -moz-transition: height 0.2s;
+        transition: height 0.2s;
+    }
+    .rating-stars {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        ul {
+            list-style-type: none;
+            padding: 0;
+
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            li {
+                cursor: pointer;
+            }
+        }
+    }
+    .rating-stars {
+        ul > li.star {
+            display: inline-block;
+        }
+        ul > li.star > i.fa {
+            font-size: 23px;
+            color:#ccc;
+        }
+        ul > li.star.hover > i.fa {
+            color: #f1ca2a;
+        }
+        ul > li.star.selected > i.fa {
+            color: #f1ca2a;
+        }
+    }
+}
+.tutor-rating {
+    .not-review {
+        margin-top: 10px;
+        font-size: 12px;
+    }
+}
+
+.tox-tinymce {
+    width: 100% !important;
+    min-height: 400px !important;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar-top-links .dropdown-user {
+        left: 0px !important;
+        right: auto !important;
+    }
+}
