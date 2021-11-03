@@ -88,11 +88,11 @@ class AuthController extends Controller
         if ($checkEmail == 1) {
             $codeReset = strtoupper(substr(md5(microtime()), rand(0, 26), 6));
             $aEmail = md5($email) . $codeReset;
-            // dd($aEmail);
+
             $user = $this->userRepository->findWhere(['email' => $request->email])->first();
         
             $links = route('user.password.recover.show', $aEmail);
-            // dd($links);
+
             if ($user) {
                 $data = [
                     'name' => $user->name,
@@ -110,6 +110,7 @@ class AuthController extends Controller
                 ]);
                 $request->session()->put('emailReset', $email);
                 $request->session()->put('code', $codeReset);
+                
                 return redirect()->route('user.password.reset.show');
             }
         } else {
