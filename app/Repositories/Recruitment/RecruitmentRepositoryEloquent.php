@@ -86,48 +86,28 @@ class RecruitmentRepositoryEloquent extends BaseRepository implements Recruitmen
     {
         if ($params['thumbnail']) {
             $fullPath = $this->baseService->uploadImagesBase64($params['thumbnail']);
+            
             $params['thumbnail'] = $fullPath;
         }
-
-        $dataRecruitment = [
-            'name' => $params['name'],
-            'slug' => $params['slug'],
-            'preview_text' => $params['preview_text'],
-            'benefit_text' => $params['benefit_text'],
-            'gender' => $params['gender'],
-            'profile_text' => $params['profile_text'],
-            'province_id' => $params['province_id'],
-            'category_id' => $params['category_id'],
-            'thumbnail' => $params['thumbnail'],
-            'qty' => $params['qty'],
-            'employer_id' => $params['employer_id']
-        ];
         
-        $recruitment = Recruitment::create($dataRecruitment);
+        $params['employer_id'] = auth('store')->user()->id;
+
+        $recruitment = Recruitment::create($params);
 
         return $recruitment;
     }
 
     public function updateRecruitment(array $params)
     {
-        $dataRecruitment = [
-            'name' => $params['name'],
-            'slug' => $params['slug'],
-            'preview_text' => $params['preview_text'],
-            'benefit_text' => $params['benefit_text'],
-            'gender' => $params['gender'],
-            'profile_text' => $params['profile_text'],
-            'province_id' => $params['province_id'],
-            'category_id' => $params['category_id'],
-            'qty' => $params['qty'],
-        ];
-
         if (isset($params['thumbnail'])) {
             $fullPath = $this->baseService->uploadImagesBase64($params['thumbnail']);
+            
             $params['thumbnail'] = $fullPath;
         }
+        
+        $params['employer_id'] = auth('store')->user()->id;
 
-        $recruitment = Recruitment::where('id', $params['id'])->update($dataRecruitment);
+        $recruitment = Recruitment::where('id', $params['id'])->update($params);
 
         return $recruitment;
     }

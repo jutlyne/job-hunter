@@ -21,7 +21,7 @@ class BaseService
     public function uploadImagesBase64($thumbnail)
     {
         $fileName = Str::uuid() . '.jpg';
-        $fullPath = 'blogs/' . time() . $fileName;
+        $fullPath = 'admins/' . time() . $fileName;
         @list($type, $file_data) = explode(';', $thumbnail);
         @list(, $file_data) = explode(',', $file_data);
         Storage::disk('public')->put($fullPath, base64_decode($file_data), 'public');

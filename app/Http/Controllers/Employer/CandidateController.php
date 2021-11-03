@@ -3,10 +3,18 @@
 namespace App\Http\Controllers\Employer;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\Application\Employer\ApplicationRepository;
 use Illuminate\Http\Request;
 
 class CandidateController extends Controller
 {
+
+    protected $applicationRepository;
+
+    public function __construct(ApplicationRepository $applicationRepository)
+    {
+        $this->applicationRepository = $applicationRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,9 @@ class CandidateController extends Controller
      */
     public function index()
     {
-        return view('employer.candidate.index');
+        $apply = $this->applicationRepository->getAll();
+
+        return view('employer.candidate.index', compact('apply'));
     }
 
     /**
@@ -46,7 +56,11 @@ class CandidateController extends Controller
      */
     public function show($id)
     {
-        //
+        $profile = $this->applicationRepository->getInfoUser($id);
+
+        return response()->json([
+            'profile' => $profile
+        ]);
     }
 
     /**
