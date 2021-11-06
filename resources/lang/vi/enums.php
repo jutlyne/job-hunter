@@ -6,6 +6,7 @@ use App\Enums\LimitEnums;
 use App\Enums\EducationLevels;
 use App\Enums\ExperienceEnums;
 use App\Enums\Languages;
+use App\Enums\Prioritize;
 
 return [
 
@@ -48,5 +49,10 @@ return [
         Languages::JP => 'Japanese',
         Languages::CN => 'Chinese',
         Languages::KP => 'Korean'
+    ],
+
+    Prioritize::class => [
+        Prioritize::ACTIVE => 'On Prioritize',
+        Prioritize::IN_ACTIVE => 'Off Prioritize'
     ]
 ];
