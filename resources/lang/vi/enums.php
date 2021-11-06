@@ -5,7 +5,9 @@ use App\Enums\Icon;
 use App\Enums\LimitEnums;
 use App\Enums\EducationLevels;
 use App\Enums\ExperienceEnums;
+use App\Enums\Gender;
 use App\Enums\Languages;
+use App\Enums\LevelJob;
 use App\Enums\Prioritize;
 
 return [
@@ -54,5 +56,21 @@ return [
     Prioritize::class => [
         Prioritize::ACTIVE => 'On Prioritize',
         Prioritize::IN_ACTIVE => 'Off Prioritize'
+    ],
+
+    Gender::class => [
+        Gender::MALE_FEMALE => 'Male / Female',
+        Gender::MALE => 'Male',
+        Gender::FEMALE => 'Female'
+    ],
+
+    LevelJob::class => [
+        LevelJob::INTERN => 'Intern',
+        LevelJob::FRESHER => 'Fresher',
+        LevelJob::JUNIOR => 'Junior',
+        LevelJob::SENIOR => 'Senior',
+        LevelJob::LEADER => 'Leader',
+        LevelJob::MANAGER => 'Project Manager',
+        LevelJob::SENIOR_LEADER => 'Senior Leader'
     ]
 ];

@@ -117,13 +117,12 @@ class RecruitmentRepositoryEloquent extends BaseRepository implements Recruitmen
         $paginate = $params['paginate'] ?? config('paginate.default_recruit');
 
         return $this->modelRecruitment
+            ->selectRaw('recruitments.*, employers.prioritize as prioritize')
+            ->join('employers', 'employer_id', '=', 'employers.id')
             ->when(isset($params['province']), function ($q) use ($params) {
-                $q->where('province_id', $params['province']);
+                $q->where('recruitments.province_id', $params['province']);
             })
-            // ->when(isset($params['title']), function ($q) use ($params) {
-            //     $q->where('name', 'like', '%'.$params['title'].'%');
-            // })
-            ->orderBy('created_at', 'DESC')
+            ->orderByRaw('prioritize DESC', 'created_at DESC')
             ->paginate($paginate);
     }
 

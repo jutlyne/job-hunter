@@ -49,7 +49,7 @@
                             <span class="card-text">Applied</span>
                         </div>
                         <div class="col-md-4 d-flex align-items-center flex-column">
-                            <h3 class="text-muted">{{ $applicationFilter->where('status', \App\Enums\ApplicationStatus::FINISHED)->pluck('count')->first() ?? 0}}</h3>
+                            <h3 class="text-muted">{{ $applicationFilter->where('status', \App\Enums\ApplicationStatus::ACCEPT)->pluck('count')->first() ?? 0}}</h3>
                             <p class="card-text">Accept</p>
                         </div>
                         <div class="col-md-4 d-flex align-items-center flex-column">
@@ -71,7 +71,7 @@
                             <span class="card-text">Applied</span>
                         </div>
                         <div class="col-md-4 d-flex align-items-center flex-column">
-                            <h3 class="text-muted">{{ $applicationToday->where('status', \App\Enums\ApplicationStatus::FINISHED)->pluck('count')->first() ?? 0}}</h3>
+                            <h3 class="text-muted">{{ $applicationToday->where('status', \App\Enums\ApplicationStatus::ACCEPT)->pluck('count')->first() ?? 0}}</h3>
                             <p class="card-text">Accept</p>
                         </div>
                         <div class="col-md-4 d-flex align-items-center flex-column">
@@ -92,7 +92,7 @@
                             <span class="card-text">Applied</span>
                         </div>
                         <div class="col-md-4 d-flex align-items-center flex-column">
-                            <h3 class="text-muted">{{ $applicationMonth->where('status', \App\Enums\ApplicationStatus::FINISHED)->pluck('count')->first() ?? 0}}</h3>
+                            <h3 class="text-muted">{{ $applicationMonth->where('status', \App\Enums\ApplicationStatus::ACCEPT)->pluck('count')->first() ?? 0}}</h3>
                             <p class="card-text">Accept</p>
                         </div>
                         <div class="col-md-4 d-flex align-items-center flex-column">

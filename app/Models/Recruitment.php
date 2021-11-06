@@ -22,7 +22,10 @@ class Recruitment extends Model
         'category_id',
         'qty',
         'employer_id',
-        'thumbnail'
+        'thumbnail',
+        'salary',
+        'experience',
+        'level'
     ];
 
     public function getRecruitmentUrlAttribute()
