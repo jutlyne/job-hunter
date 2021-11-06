@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Employer;
 
+use App\Enums\Prioritize;
 use App\Models\Employer;
 use Carbon\Carbon;
 use Exception;
@@ -111,5 +112,13 @@ class EmployerRepositoryEloquent extends BaseRepository implements EmployerRepos
 
             return false;
         }
+    }
+
+    public function active($id)
+    {
+        return $this->findOrFail($id)->update([
+            'prioritize' => Prioritize::ACTIVE,
+            'prioritize_at' => now()
+        ]);
     }
 }

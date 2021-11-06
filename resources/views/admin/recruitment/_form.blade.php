@@ -152,6 +152,19 @@
                         @enderror
                     </div>
                     <div class="col-md-12">
+                        <label for="">Employer</label>
+                        <select class="form-control form-select" required name="employer_id">
+                                @foreach ($employers as $item)
+                                <option value="{{ $item->id }}"
+                                    {{ isset($recruitment->employer_id) && $recruitment->employer_id == $item->id ? 'selected' : '' }}>
+                                    {{ $item->name }}</option>
+                                @endforeach
+                        </select>
+                        @error('city')
+                            <code>{{ $message }}</code>
+                        @enderror
+                    </div>
+                    <div class="col-md-12">
                         <label for="">Quantity</label>
                         <input type="number" class="form-control" name="qty" value="{{ $recruitment->qty ?? old('qty') }}">
                     </div>

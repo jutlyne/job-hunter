@@ -53,12 +53,22 @@
                                                     <span>{{ date('d/m/Y H:i', strtotime($item->apply_date)) }}</span><br />
                                                 </td>
                                                 <td>
+                                                    @if ($item->status == \App\Enums\ApplicationStatus::PENDING)
                                                     <ul class="action_job">
                                                         <li><span>Delete</span><a href="" class="remove-apply"
                                                                 data-id="{{ $item->id }}"
                                                                 data-url="{{ route('user.apply.destroy') }}" title=""><i
                                                                     class="la la-trash-o"></i></a></li>
                                                     </ul>
+                                                    @elseif ($item->status == \App\Enums\ApplicationStatus::ACCEPT)
+                                                    <ul class="action_job">
+                                                        <li><span>Accept</span><i class="far fa-check-circle"></i></li>
+                                                    </ul>
+                                                    @else
+                                                    <ul class="action_job">
+                                                        <li><span>Cancel</span><i class="fas fa-ban"></i></li>
+                                                    </ul>
+                                                    @endif
                                                 </td>
                                             </tr>
 

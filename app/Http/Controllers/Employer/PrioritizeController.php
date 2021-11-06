@@ -3,10 +3,17 @@
 namespace App\Http\Controllers\Employer;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\Employer\EmployerRepository;
 use Illuminate\Http\Request;
+
 
 class PrioritizeController extends Controller
 {
+    protected $employerRepository;
+
+    public function __construct(EmployerRepository $employerRepository) {
+        $this->employerRepository = $employerRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,14 @@ class PrioritizeController extends Controller
      */
     public function index()
     {
-        return view('employer.prioritize.index');
+        $employer = $this->employerRepository->getInfo(auth('store')->user()->id);
+
+        return view('employer.prioritize.index', compact('employer'));
+    }
+
+    public function active()
+    {
+        return $this->employerRepository->active(auth('store')->user()->id);
     }
 
     /**

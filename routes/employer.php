@@ -8,6 +8,8 @@ use App\Http\Controllers\Employer\DashBoardController;
 use App\Http\Controllers\Employer\PrioritizeController;
 use App\Http\Controllers\Employer\ProfileController;
 use App\Http\Controllers\Employer\RecruitmentController;
+use App\Http\Controllers\Employer\AgreeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -38,4 +40,6 @@ Route::middleware('auth:store')->group(function () {
     Route::resource('/prioritize', PrioritizeController::class);
     Route::resource('/candidate', CandidateController::class);
     Route::post('/messages/{user}', [MessageController::class, 'send'])->name('messages.send');
+    Route::get('/refuse/{id}', [AgreeController::class, 'refuse'])->name('message.refuse');
+    Route::get('/change/prioritize', [PrioritizeController::class, 'active'])->name('change.prioritize');
 });

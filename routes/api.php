@@ -1,4 +1,6 @@
 <?php
+
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -9,4 +11,5 @@
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+Route::resource('provinces', ProvinceController::class)->only(['index',]);
+Route::resource('districts', DistrictController::class)->only(['index',]);
