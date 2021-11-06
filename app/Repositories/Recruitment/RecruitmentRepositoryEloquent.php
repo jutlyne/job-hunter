@@ -90,11 +90,11 @@ class RecruitmentRepositoryEloquent extends BaseRepository implements Recruitmen
             $params['thumbnail'] = $fullPath;
         }
         
-        $params['employer_id'] = auth('store')->user()->id;
+        if (!isset($params['employer_id'])) {
+            $params['employer_id'] = auth('store')->user()->id;
+        }
 
-        $recruitment = Recruitment::create($params);
-
-        return $recruitment;
+        return $this->modelRecruitment->create($params);
     }
 
     public function updateRecruitment(array $params)
@@ -105,11 +105,11 @@ class RecruitmentRepositoryEloquent extends BaseRepository implements Recruitmen
             $params['thumbnail'] = $fullPath;
         }
         
-        $params['employer_id'] = auth('store')->user()->id;
+        if (!isset($params['employer_id'])) {
+            $params['employer_id'] = auth('store')->user()->id;
+        }
 
-        $recruitment = Recruitment::where('id', $params['id'])->update($params);
-
-        return $recruitment;
+        return $this->modelRecruitment->find($params['id'])->update($params);
     }
 
     public function getListRecruitmentUser(array $params)

@@ -54,8 +54,9 @@ class RecruitmentController extends Controller
     {
         $provinces = $this->provinceRepository->all();
         $categories = RecruitmentCategory::get();
+        $employers = $this->employerRepository->get();
 
-        return \view('admin.recruitment.create', compact('provinces', 'categories'));
+        return \view('admin.recruitment.create', compact('provinces', 'categories', 'employers'));
     }
 
     /**
@@ -94,9 +95,10 @@ class RecruitmentController extends Controller
     {
         $provinces = $this->provinceRepository->all();
         $categories = RecruitmentCategory::get();
+        $employers = $this->employerRepository->get();
         
 
-        return view('admin.recruitment.edit', compact('recruitment', 'provinces', 'categories'));
+        return view('admin.recruitment.edit', compact('recruitment', 'provinces', 'categories', 'employers'));
     }
 
     /**
