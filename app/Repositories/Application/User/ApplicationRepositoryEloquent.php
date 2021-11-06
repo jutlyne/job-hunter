@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Application\User;
 
+use App\Enums\ApplicationStatus;
 use App\Models\Application;
 use Carbon\Carbon;
 use Prettus\Repository\Eloquent\BaseRepository;
@@ -29,10 +30,10 @@ class ApplicationRepositoryEloquent extends BaseRepository implements Applicatio
             'recruitment_id' => $params['id']
         ];
 
+        $params['status'] = ApplicationStatus::PENDING;
         $params['apply_date'] = Carbon::now()->format('Y-m-d H:i');
-        $this->updateOrCreate($find, $params);
 
-        return true;
+        return $this->updateOrCreate($find, $params);
     }
 
     public function getApply($id)
@@ -42,8 +43,12 @@ class ApplicationRepositoryEloquent extends BaseRepository implements Applicatio
 
     public function destroy($id)
     {
-        $this->model->findOrFail($id)->delete();
+        $data = $this->model->findOrFail($id);
 
-        return true;
+        if ($data->status == ApplicationStatus::CANCELED) {
+            return false;
+        }
+
+        return $data->delete();
     }
 }

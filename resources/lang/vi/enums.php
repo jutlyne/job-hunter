@@ -12,7 +12,7 @@ return [
 
     ApplicationStatus::class => [
         ApplicationStatus::PENDING => 'Applied',
-        ApplicationStatus::FINISHED => 'Accept',
+        ApplicationStatus::ACCEPT => 'Accept',
         ApplicationStatus::CANCELED => 'Refuse',
         ApplicationStatus::OUTDATED => 'Expired',
     ],
