@@ -29,15 +29,6 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
-    'nexmo' => [
-        'key' => env('NEXMO_KEY'),
-        'secret' => env('NEXMO_SECRET'),
-        'sms_from' => env('NEXMO_NUMBER'),
-    ],
-    'onesignal' => [
-        'app_id' => env('ONESIGNAL_APP_ID'),
-        'rest_api_key' => env('ONESIGNAL_REST_API_KEY')
-    ],
     'facebook' => [
         'client_id' => env('FACEBOOK_APP_ID'),
         'client_secret' => env('FACEBOOK_APP_SECRET'),
@@ -53,9 +44,4 @@ return [
         'client_secret' => env('GOOGLE_APP_SECRET'),
         'redirect' => env('GOOGLE_APP_CALLBACK_URL'),
     ], 
-    'facebook' => [
-        'client_id' => '149101357409265',
-        'client_secret' => 'fac2942e565991c92339c19b65626b0b',
-        'redirect' => 'http://jobshunt.local/auth/facebook/callback',
-    ],
 ];

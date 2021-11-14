@@ -28,6 +28,7 @@ class SocialController extends Controller
     {
         return Socialite::driver('google')->redirect();
     }
+
     public function callback()
     {
         $users = Socialite::driver('google')->stateless()->user();
@@ -40,6 +41,44 @@ class SocialController extends Controller
                 'email' => $users->email,
                 'provider_id' => $users->id,
                 'provider' => 'google',
+                'password' => null,
+                'phone' => '',
+                'status' => UserStatus::PENDING
+            ]);
+
+            return view('auth.create_password');
+        } elseif ($authUser->status == UserStatus::PENDING) {
+            return view('auth.create_password');
+        }
+
+        auth('user')->login($authUser);
+
+        $name = auth('user')->user()->name;
+        $data = $this->loginRepository->loginInfo();
+        $data['user_name'] = $name;
+
+        LoginCounter::create($data);
+
+        return redirect()->intended(route('user.home'));
+    }
+
+    public function login_facebook()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function callback_facebook()
+    {
+        $users = Socialite::driver('facebook')->stateless()->user();
+        $authUser = User::where('email', $users->email)->first();
+        session()->put('email', $users->email);
+        
+        if (!$authUser) {
+            $authUser = User::create([
+                'name' => $users->name,
+                'email' => $users->email,
+                'provider_id' => $users->id,
+                'provider' => 'facebook',
                 'password' => null,
                 'phone' => '',
                 'status' => UserStatus::PENDING

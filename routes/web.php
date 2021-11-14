@@ -29,9 +29,10 @@ Route::middleware('guest')->group(function () {
     Route::get('/login_choose', [AuthController::class, 'showLoginOption'])->name('choose_login');
 
     // User Login
-    //Login  google
-    // Route::get('/auth/facebook', 'SocialController@redirectToProvider');
-    // Route::get('/auth/facebook/callback', 'SocialController@handleProviderCallback');
+    //Login  facebook
+    Route::get('/login-facebook', [SocialController::class, 'login_facebook'])->name('login.facebook');
+    Route::get('/login/facebook/callback', [SocialController::class, 'callback_facebook']);
+    //login google
     Route::get('/login-google', [SocialController::class, 'login_google'])->name('login.google');
     Route::get('/login/google/callback', [SocialController::class, 'callback']);
     Route::get('/login/password/create', [SocialController::class, 'showPasswordForm'])->name('password.create');
