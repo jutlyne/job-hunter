@@ -63,9 +63,8 @@ class RecruitmentController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        $id = auth('store')->user()->id;
-        $params = $request->validated();
-        $params['employer_id'] = $id;
+        $params = $request->all();
+        
         $this->recruitmentRepository->createRecruitment($params);
 
         return redirect()->route('employer.recruitment.index');
@@ -107,7 +106,7 @@ class RecruitmentController extends Controller
      */
     public function update(UpdateRequest $request, $id)
     {
-        $data = $request->validated();
+        $data = $request->all();
         $data['id'] = $id;
         
         $this->recruitmentRepository->updateRecruitment($data);

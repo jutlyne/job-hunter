@@ -13,6 +13,7 @@
     
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" type="image/x-icon">
     <!-- ogp -->
     <meta property="og:url" content="@yield('ogurl', url('/'))" />
     <meta property="og:type" content="@yield('ogtype', 'website')" />

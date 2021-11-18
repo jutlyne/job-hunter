@@ -106,7 +106,7 @@
                                     </span>
                                 </li>
                                 <li><i class="la la-thumb-tack"></i>
-                                    <h3>Career Level</h3><span>{{ $recruitment->level }}</span>
+                                    <h3>Career Level</h3><span>{{ \App\Enums\LevelJob::toSelectArray()[$recruitment->level] }}</span>
                                 </li>
                                 <li><i class="la la-shield"></i>
                                     <h3>Experience</h3>

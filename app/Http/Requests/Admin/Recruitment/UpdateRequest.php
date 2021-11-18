@@ -44,7 +44,9 @@ class UpdateRequest extends FormRequest
             'category_id' => ['required', 'max:255'],
             'qty' => ['required'],
             'thumbnail' => $this->_method === 'PATCH' ? 'nullable' : '',
-            'employer_id' => ['required']
+            'level' => ['required'],
+            'salary' => ['required'],
+            'experience' => ['required']
         ];
     }
 }

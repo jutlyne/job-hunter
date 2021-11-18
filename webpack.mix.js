@@ -72,14 +72,6 @@ mix.copy('resources/assets/img/', 'public/img/');
 mix.copy('node_modules/jquery/dist/jquery.min.js', 'public/js/');
 mix.copy('node_modules/@coreui/icons/sprites/free.svg', 'public/coreui/icons/');
 
-// onesignal
-mix.copy('resources/assets/js/OneSignalSDKUpdaterWorker.js', 'public/');
-mix.copy('resources/assets/js/OneSignalSDKWorker.js', 'public/');
-
-// google maps
-mix.copy('resources/assets/js/mapInput.js', 'public/js');
-mix.copy('resources/assets/js/AjaxAct.js', 'public/js');
-
 // Bootstrap toggle
 mix.copy('node_modules/bootstrap4-toggle/css/bootstrap4-toggle.min.css', 'public/css');
 mix.copy('node_modules/bootstrap4-toggle/js/bootstrap4-toggle.min.js', 'public/js');

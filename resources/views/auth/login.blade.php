@@ -72,7 +72,7 @@
                                     <span>Or</span>
                                     <div class="login-social">
                                         <a class="fb-login" href="{{ route('user.login.google') }}" title=""><i class="fab fa-google"></i></a>
-                                        <a class="tw-login" href="#" title=""><i class="fab fa-facebook"></i></a>
+                                        <a class="tw-login" href="{{ route('user.login.facebook') }}" title=""><i class="fab fa-facebook"></i></a>
                                     </div>
                                 </div>
                             </div>

@@ -22,15 +22,7 @@
 									</div>
 									<span class="job-lctn"><i class="la la-map-marker"></i>{{ $item->province->name }}</span>
 									<span class="fav-job"><i class="la la-heart-o"></i></span>
-									<span class="job-is ft">
-                                        @if ($item->gender == 2)
-                                            Male / Female
-                                        @elseif ($item->gender == 1)
-                                            Male
-                                        @else
-                                            Female
-                                        @endif
-                                    </span>
+									<span class="job-is ft">{{ \App\Enums\Gender::toSelectArray()[$item->gender] }}</span>
 								</div><!-- Job -->
 							@endforeach
 						</div>

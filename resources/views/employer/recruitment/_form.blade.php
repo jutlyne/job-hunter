@@ -48,7 +48,6 @@
         <div class="row">
             <div class="col-md-12">
                 <label for="">Name</label>
-                <input type="hidden" name="employer_id" value="6">
                 <input type="text" class="form-control" required name="name" placeholder="Please enter your name"
                     value="{{ $recruitment->name ?? old('name') }}">
                 @error('title')
@@ -128,10 +127,10 @@
                     <div class="col-md-12">
                         <label for="">Gender</label>
                         <select class="form-control form-select" required name="gender">
-                                <option value="2" {{ isset($recruitment->gender) && $recruitment->gender == 2 ? 'selected' : '' }}>All</option>
-                                <option value="0" {{ isset($recruitment->gender) && $recruitment->gender == 0 ? 'selected' : '' }}>Male</option>
-                                <option value="1" {{ isset($recruitment->gender) && $recruitment->gender == 1 ? 'selected' : '' }}>Female</option>
-                        </select>
+                            @foreach (\App\Enums\Gender::toSelectArray() as $key => $value)
+                                <option value="{{ $key }}" {{ isset($recruitment->gender) && $recruitment->gender == $key ? 'selected' : '' }}>{{ $value }}</option>
+                            @endforeach
+                            </select>
                         @error('gender')
                             <code>{{ $message }}</code>
                         @enderror
@@ -151,7 +150,29 @@
                     </div>
                     <div class="col-md-12">
                         <label for="">Quantity</label>
-                        <input type="number" class="form-control" name="qty" value="{{ $recruitment->qty ?? old('qty') }}">
+                        <input type="number" class="form-control" name="qty"
+                            value="{{ $recruitment->qty ?? old('qty') }}">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="">Salary</label>
+                        <input type="salary" class="form-control" name="salary"
+                            value="{{ $recruitment->salary ?? old('salary') }}">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="">Experience</label>
+                        <select name="experience" id="" class="form-control">
+                            @foreach (\App\Enums\ExperienceEnums::toSelectArray() as $key => $value)
+                                <option value="{{ $key }}" {{ isset($recruitment->experience) && $recruitment->experience == $key ? 'selected' : '' }}>{{ $value }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="">Level</label>
+                        <select name="level" id="" class="form-control">
+                            @foreach (\App\Enums\LevelJob::toSelectArray() as $key => $value)
+                                <option value="{{ $key }}" {{ isset($recruitment->level) && $recruitment->level == $key ? 'selected' : '' }}>{{ $value }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
             </div>

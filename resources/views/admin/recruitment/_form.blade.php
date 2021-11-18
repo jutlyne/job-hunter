@@ -2,7 +2,6 @@
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css" />
     <style>
-        
         label {
             padding: 10px 0;
             font-weight: bold !important;
@@ -38,6 +37,7 @@
             visibility: hidden;
             transition: 1.5 ease;
         }
+
         iframe {
             width: 100%;
         }
@@ -49,7 +49,6 @@
         <div class="row">
             <div class="col-md-12">
                 <label for="">Name</label>
-                <input type="hidden" name="employer_id" value="6">
                 <input type="text" class="form-control" required name="name" placeholder="Please enter your name"
                     value="{{ $recruitment->name ?? old('name') }}">
                 @error('title')
@@ -116,10 +115,10 @@
                         <label for="">Category</label>
                         <select class="form-control js-example-basic-multiple" required name="category_id"">
                             
-                            @foreach ($categories as $item)
-                                <option value="{{ $item->id }}"
-                                    {{ isset($recruitment->category_id) && $recruitment->category_id == $item->id  ? 'selected' : '' }}>
-                                    {{ $item->name }}</option>
+                             @foreach ($categories as $item)
+                            <option value="{{ $item->id }}"
+                                {{ isset($recruitment->category_id) && $recruitment->category_id == $item->id ? 'selected' : '' }}>
+                                {{ $item->name }}</option>
                             @endforeach
                             <option value="new">New category</option>
                         </select>
@@ -130,9 +129,11 @@
                     <div class="col-md-12">
                         <label for="">Gender</label>
                         <select class="form-control form-select" required name="gender">
-                                <option value="2" {{ isset($recruitment->gender) && $recruitment->gender == 2 ? 'selected' : '' }}>All</option>
-                                <option value="0" {{ isset($recruitment->gender) && $recruitment->gender == 0 ? 'selected' : '' }}>Male</option>
-                                <option value="1" {{ isset($recruitment->gender) && $recruitment->gender == 1 ? 'selected' : '' }}>Female</option>
+                            @foreach (\App\Enums\Gender::toSelectArray() as $key => $value)
+                                <option value="{{ $key }}"
+                                    {{ isset($recruitment->gender) && $recruitment->gender == $key ? 'selected' : '' }}>
+                                    {{ $value }}</option>
+                            @endforeach
                         </select>
                         @error('gender')
                             <code>{{ $message }}</code>
@@ -141,11 +142,11 @@
                     <div class="col-md-12">
                         <label for="">City</label>
                         <select class="form-control form-select" required name="province_id">
-                                @foreach ($provinces as $item)
+                            @foreach ($provinces as $item)
                                 <option value="{{ $item->id }}"
                                     {{ isset($recruitment->province_id) && $recruitment->province_id == $item->id ? 'selected' : '' }}>
                                     {{ $item->name }}</option>
-                                @endforeach
+                            @endforeach
                         </select>
                         @error('city')
                             <code>{{ $message }}</code>
@@ -154,11 +155,11 @@
                     <div class="col-md-12">
                         <label for="">Employer</label>
                         <select class="form-control form-select" required name="employer_id">
-                                @foreach ($employers as $item)
+                            @foreach ($employers as $item)
                                 <option value="{{ $item->id }}"
                                     {{ isset($recruitment->employer_id) && $recruitment->employer_id == $item->id ? 'selected' : '' }}>
                                     {{ $item->name }}</option>
-                                @endforeach
+                            @endforeach
                         </select>
                         @error('city')
                             <code>{{ $message }}</code>
@@ -166,7 +167,29 @@
                     </div>
                     <div class="col-md-12">
                         <label for="">Quantity</label>
-                        <input type="number" class="form-control" name="qty" value="{{ $recruitment->qty ?? old('qty') }}">
+                        <input type="number" class="form-control" name="qty"
+                            value="{{ $recruitment->qty ?? old('qty') }}">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="">Salary</label>
+                        <input type="salary" class="form-control" name="salary"
+                            value="{{ $recruitment->salary ?? old('salary') }}">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="">Experience</label>
+                        <select name="experience" id="" class="form-control">
+                            @foreach (\App\Enums\ExperienceEnums::toSelectArray() as $key => $value)
+                                <option value="{{ $key }}" {{ isset($recruitment->experience) && $recruitment->experience == $key ? 'selected' : '' }}>{{ $value }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="">Level</label>
+                        <select name="level" id="" class="form-control">
+                            @foreach (\App\Enums\LevelJob::toSelectArray() as $key => $value)
+                                <option value="{{ $key }}" {{ isset($recruitment->level) && $recruitment->level == $key ? 'selected' : '' }}>{{ $value }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
             </div>
@@ -206,8 +229,7 @@
                 ['table', ['table']],
                 ['view', ['codeview', 'help']],
             ],
-            callbacks: {
-            }
+            callbacks: {}
         });
 
         var $modal = $('#modal');
@@ -290,7 +312,7 @@
 
             var category = $('#newCategory').val();
             var icon = $('.icon').val();
-            
+
             $.ajax({
                 url: "{{ route('admin.recruitment.category.store') }}",
                 type: 'post',
