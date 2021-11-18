@@ -20,6 +20,7 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
+    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" type="image/x-icon">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Main styles for this application-->
