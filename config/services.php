@@ -32,7 +32,7 @@ return [
     'facebook' => [
         'client_id' => env('FACEBOOK_APP_ID'),
         'client_secret' => env('FACEBOOK_APP_SECRET'),
-        'redirect' => env('FACEBOOK_APP_CALLBACK_URL'),
+        'redirect' => env('APP_URL') . '/login/facebook/callback',
     ],
     'zalo' => [
         'client_id' => env('ZALO_APP_ID'),
@@ -42,6 +42,6 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_APP_ID'),
         'client_secret' => env('GOOGLE_APP_SECRET'),
-        'redirect' => env('GOOGLE_APP_CALLBACK_URL'),
+        'redirect' => env('APP_URL') . '/login/google/callback',
     ], 
 ];

@@ -87,6 +87,10 @@ class SocialController extends Controller
             return view('auth.create_password');
         } elseif ($authUser->status == UserStatus::PENDING) {
             return view('auth.create_password');
+        } else {
+            $authUser->update([
+                'provider' => 'facebook'
+            ]);
         }
 
         auth('user')->login($authUser);

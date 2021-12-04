@@ -39,6 +39,7 @@ Route::middleware('auth:store')->group(function () {
     Route::resource('/recruitment', RecruitmentController::class);
     Route::resource('/prioritize', PrioritizeController::class);
     Route::resource('/candidate', CandidateController::class);
+    Route::get('/candidate-accept', [CandidateController::class, 'acceptCustomer'])->name('candidate.accept');
     Route::post('/messages/{user}', [MessageController::class, 'send'])->name('messages.send');
     Route::get('/refuse/{id}', [AgreeController::class, 'refuse'])->name('message.refuse');
     Route::get('/change/prioritize', [PrioritizeController::class, 'active'])->name('change.prioritize');
