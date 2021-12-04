@@ -24,4 +24,9 @@ class AgreeController extends Controller
 
         return redirect()->route('employer.candidate.index');
     }
+
+    public function agree($id)
+    {
+        // $this->applicationRepository->sendMailAgree($id);
+    }
 }
