@@ -13,6 +13,7 @@ use App\Models\UserProfile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Prettus\Repository\Eloquent\BaseRepository;
+use Illuminate\Support\Str;
 use Prettus\Repository\Criteria\RequestCriteria;
 
 class ApplicationRepositoryEloquent extends BaseRepository implements ApplicationRepository
@@ -49,6 +50,7 @@ class ApplicationRepositoryEloquent extends BaseRepository implements Applicatio
         $data['experience'] = ExperienceEnums::getDescription($data->experience);
         $data['education'] = EducationLevels::getDescription($data->education);
         $data['language'] = Languages::getDescription($data->language);
+        $data['quote'] = Str::limit($data->quote, '75', '...');
 
         return $data;
     }

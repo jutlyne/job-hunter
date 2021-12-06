@@ -28,6 +28,12 @@
             }
         }
 
+        @media (min-width: 992px) {
+            .modal-lg, .modal-xl {
+                max-width: 800px;
+            }
+        }
+
     </style>
 @endpush
 
@@ -77,7 +83,7 @@
     </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
 
             <!-- Modal content-->
             <div class="modal-content">
@@ -88,10 +94,10 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Education</th>
-                                <th>Experience</th>
-                                <th>Language</th>
-                                <th>Quote</th>
+                                <th width="20%">Education</th>
+                                <th width="25%">Experience</th>
+                                <th width="15%">Language</th>
+                                <th width="40%">Quote</th>
                             </tr>
                         </thead>
                         <tbody>
