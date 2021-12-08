@@ -20,7 +20,7 @@ class CreateRecruitmentsTable extends Migration
             $table->string('gender');
             $table->string('benefit_text');
             $table->string('profile_text');
-            $table->integer('city');
+            // $table->integer('city');
             $table->integer('category_id');
             $table->integer('qty');
             $table->integer('employer_id');
