@@ -32,41 +32,60 @@
 @endpush
 
 @section('content')
-    <div class="card">
-        
-    </div>
+    <form action="{{ route('employer.message.agree', $info->id) }}" method="post">
+        @csrf
+        <div class="card">
+            <div class="row">
+                <div class="col-md-12 pt-3 pb-3" style="background: #fff">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="hidden" name="id" value="{{ $info->id }}" id="">
+                            <input type="text" class="form-control" readonly required name="name"
+                                placeholder="Please enter your name" value="Dear {{ $info->user->name ?? old('name') }}">
+                            @error('title')
+                                <code>{{ $message }}</code>
+                            @enderror
+                        </div>
+                        <div class="col-md-12">
+                            <label for="">Title</label>
+                            <input type="text" class="form-control" required name="title" placeholder="Please enter slug"
+                                value="{{ $recruitment->slug ?? old('slug') }}">
+                            @error('title')
+                                <code>{{ $message }}</code>
+                            @enderror
+                        </div>
+                        <div class="col-md-12">
+                            <label for="">Description</label>
+                            <textarea id="summernote" class="summernote form-control"
+                                name="">{{ old('description') }}</textarea>
+                            @error('description')
+                                <code>{{ $message }}</code>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-12 pt-3">
+                        <div class="row d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 @endsection
 
 @push('script')
     <script src={{ asset('js/select2.min.js') }}></script>
     <script>
-        $(function() {
-            $('.js-example-basic-multiple').select2();
-        })
-
-        $(document).on("click", ".btn-danger", function(e) {
-            if (!confirm('Deleted data will not be recoverable ?')) {
-                e.preventDefault();
-            }
-        });
-        $(document).on("click", ".btn-info", function(e) {
-            url = $(this).attr('data-url');
-            $.ajax({
-                url: url,
-                type: 'get',
-                success: function(data) {
-                    profile = data.profile;
-                    $('#education').html(profile.education);
-                    $('#exp').html(profile.experience);
-                    $('#lang').html(profile.language);
-                    $('#quote').html(profile.quote);
-
-                    $('#myModal').modal('show');
-                },
-                error: function(e) {
-                    console.log(e.message);
-                }
-            });
+        $('.summernote').summernote({
+            placeholder: 'Please enter',
+            tabsize: 1,
+            height: 100,
+            lang: 'vi-VN', // default: 'en-US'
+            toolbar: [
+                ['view', ['codeview', 'help']],
+            ],
+            callbacks: {}
         });
     </script>
 @endpush

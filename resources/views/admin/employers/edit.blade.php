@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header"><i class="fa fa-align-justify"></i>Cập nhật employer</div>
+        <div class="card-header"><i class="fa fa-align-justify"></i>Update employer</div>
         <div class="card-body">
             @if ($errors->any())
                 <div class="alert alert-danger">

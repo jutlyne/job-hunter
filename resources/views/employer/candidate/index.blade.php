@@ -63,7 +63,7 @@
                                 <button type="button" data-url="{{ route('employer.candidate.show', $item->user->id) }}"
                                     class="btn btn-info btn-sm" data-toggle="modal"><i class="fa fa-eye"></i></button>
                                 @if ($item->status == \App\Enums\ApplicationStatus::PENDING)
-                                    <a href="" class="btn btn-info btn-sm"><i class="fas fa-check-square"></i></a>
+                                    <a href="{{ route('employer.message.agree', $item->id) }}" class="btn btn-info btn-sm"><i class="fas fa-check-square"></i></a>
                                     <a href="{{ route('employer.message.refuse', $item->id) }}" class="btn btn-info btn-sm"><i class="fas fa-times-circle"></i></a>
                                 @elseif($item->status == \App\Enums\ApplicationStatus::CANCELED)
                                     <button class="btn btn-info btn-sm" style="color: red" disabled><i class="fas fa-times-circle" style="color: black"></i></button>

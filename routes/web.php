@@ -51,7 +51,7 @@ Route::middleware('guest')->group(function () {
 
 });
 
-Route::middleware('checkstatus')->group(function () {
+Route::middleware('auth:user')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/verify', [RegisterController::class, 'showVerifyForm'])->name('verify');
     Route::post('/verify', [RegisterController::class, 'register'])->name('verify');

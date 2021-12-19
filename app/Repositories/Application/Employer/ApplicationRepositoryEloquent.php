@@ -41,7 +41,11 @@ class ApplicationRepositoryEloquent extends BaseRepository implements Applicatio
 
     public function getAll()
     {
-        return $this->model->where('employer_id', auth('store')->user()->id)->get();
+        return $this->model
+            ->where('employer_id', auth('store')->user()->id)
+            ->orderBy('status')
+            ->orderBy('apply_date')
+            ->get();
     }
 
     public function getInfoUser($id)
@@ -74,5 +78,23 @@ class ApplicationRepositoryEloquent extends BaseRepository implements Applicatio
         });
 
         return $apply->update(['status' => ApplicationStatus::CANCELED]);
+    }
+
+    public function getInfoAgree($id)
+    {
+        return $this->model->find($id);
+    }
+
+    public function sendMailAgree($params)
+    {
+        $apply = $this->model->find($params['id']);
+        $to_email = $apply->user->email;
+        $params['name'] = $apply->user->name;
+        $params['employer'] = $apply->employer->name;
+
+        Mail::send('mail.send-agree', $params, function ($message) use ($to_email) {
+            $message->to($to_email)->subject('Congratulation');
+            $message->from('vocaoky290999@gmail.com', 'Jobs Hunt');
+        });
     }
 }
