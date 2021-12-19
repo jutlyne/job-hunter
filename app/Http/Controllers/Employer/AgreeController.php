@@ -27,6 +27,15 @@ class AgreeController extends Controller
 
     public function agree($id)
     {
-        // $this->applicationRepository->sendMailAgree($id);
+        $info = $this->applicationRepository->getInfoAgree($id);
+
+        return view('employer.candidate.agree', compact('info'));
+    }
+
+    public function sendMailAgree(Request $request)
+    {
+        $this->applicationRepository->sendMailAgree($request->all());
+
+        return redirect()->route('employer.candidate.index');
     }
 }

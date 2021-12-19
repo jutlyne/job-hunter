@@ -27,11 +27,11 @@
 							@endforeach
 						</div>
 					</div>
-					<div class="col-lg-12">
+					{{-- <div class="col-lg-12">
 						<div class="browse-all-cat">
 							<a href="#" title="">Load more listings</a>
 						</div>
-					</div>
+					</div> --}}
 				</div>
 			</div>
 		</div>

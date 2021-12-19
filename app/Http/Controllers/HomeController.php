@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $categories = RecruitmentCategory::get();
-        $jobs = Recruitment::get();
+        $jobs = Recruitment::take(3)->get();
         $blogs = Blog::orderBy('created_at', 'desc')->take(3)->get();
 
         return view('home', compact('categories', 'jobs', 'blogs'));
