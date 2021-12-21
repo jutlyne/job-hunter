@@ -166,7 +166,10 @@
                 <p style="margin: 10px 0;">
                   <ul>
                     <li>
-                      <span style="color: red">Công cụ: Google Meet.</span> Bạn có thể NHẤP VÀO ĐÂY để tham gia phỏng vấn
+                      <span style="color: red">Thời gian : {{ $date }}</span>
+                    </li>
+                    <li>
+                      <span style="color: red">Công cụ: Zoom Meetings.</span> Bạn có thể <a href="{{ $url }}" style="color: blue">NHẤP VÀO ĐÂY</a> để tham gia phỏng vấn
                     </li>
                   </ul>
                 </p>

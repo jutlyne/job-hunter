@@ -31,7 +31,7 @@ class Blog extends Model
 
     public function getBlogUrlAttribute()
     {
-        return ($this->attributes['thumbnail']) ? Storage::disk('public')->url($this->attributes['thumbnail']) : '';
+        return ($this->attributes['thumbnail']) ? Storage::disk('s3')->url($this->attributes['thumbnail']) : '';
     }
 
 }

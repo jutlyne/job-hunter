@@ -43,5 +43,10 @@ return [
         'client_id' => env('GOOGLE_APP_ID'),
         'client_secret' => env('GOOGLE_APP_SECRET'),
         'redirect' => env('APP_URL') . '/login/google/callback',
-    ], 
+    ],
+    'zoom' => [
+        'client_id' => env('ZOOM_APP_ID'),
+        'client_secret' => env('ZOOM_APP_SECRET'),
+        'user' => env('ZOOM_USER'),
+    ],
 ];

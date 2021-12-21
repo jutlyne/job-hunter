@@ -20,12 +20,12 @@ class BaseService
 
     public function uploadImagesBase64($thumbnail)
     {
-        $fileName = Str::uuid() . '.jpg';
-        $fullPath = 'admins/' . time() . $fileName;
         @list($type, $file_data) = explode(';', $thumbnail);
         @list(, $file_data) = explode(',', $file_data);
-        Storage::disk('public')->put($fullPath, base64_decode($file_data), 'public');
+        $imageName = time().rand(1, 1000).'.'.'png';
+        $folderName = $imageName;
+        Storage::disk('s3')->put($folderName, base64_decode($file_data), '');
 
-        return $fullPath;
+        return $imageName;
     }
 }

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ProvinceController;
+use App\Http\Controllers\Api\DistrictController;
 /*
 |--------------------------------------------------------------------------
 | API Routes

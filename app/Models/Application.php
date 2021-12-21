@@ -16,7 +16,11 @@ class Application extends Model
         'status',
         'cancel_text',
         'apply_text',
-        'apply_date'
+        'apply_date',
+        'zoom_url',
+        'due_at',
+        'zoom_id',
+        'zoom_password'
     ];
 
     public function employer()

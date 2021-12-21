@@ -3,29 +3,20 @@
 @section('breadcrumb', 'Recruitments')
 
 @push('style')
-    <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
     <style>
-        td {
-            max-width: 80px;
-            max-height: 60px;
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
         }
 
-        td span {
-            width: 100%;
-            overflow: hidden;
-            display: -webkit-inline-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-        }
-
-        .pagination {
-            justify-content: center;
-        }
-
-        @media only screen and (min-width: 576px) {
-            .modal-dialog {
-                max-width: 650px;
-            }
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
         }
 
     </style>
@@ -36,9 +27,10 @@
         @csrf
         <div class="card">
             <div class="row">
-                <div class="col-md-12 pt-3 pb-3" style="background: #fff">
+                <div class="col-md-8 pb-3" style="background: #fff">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 pt-3">
+                            <label for="">Subject</label>
                             <input type="hidden" name="id" value="{{ $info->id }}" id="">
                             <input type="text" class="form-control" readonly required name="name"
                                 placeholder="Please enter your name" value="Dear {{ $info->user->name ?? old('name') }}">
@@ -46,46 +38,71 @@
                                 <code>{{ $message }}</code>
                             @enderror
                         </div>
-                        <div class="col-md-12">
-                            <label for="">Title</label>
-                            <input type="text" class="form-control" required name="title" placeholder="Please enter slug"
-                                value="{{ $recruitment->slug ?? old('slug') }}">
+                        <div class="col-md-12 pt-3">
+                            <label for="">Duration</label>
+                            <input type="number" class="form-control" name="duration" placeholder="Default 30"
+                                value="{{ old('duration') }}">
                             @error('title')
                                 <code>{{ $message }}</code>
                             @enderror
                         </div>
-                        <div class="col-md-12">
-                            <label for="">Description</label>
-                            <textarea id="summernote" class="summernote form-control"
-                                name="">{{ old('description') }}</textarea>
-                            @error('description')
-                                <code>{{ $message }}</code>
-                            @enderror
-                        </div>
                     </div>
-                    <div class="col-md-12 pt-3">
-                        <div class="row d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+                <div class="col-md-4" style="margin: inherit">
+                    <div class="row">
+                        <div class='col-md-12 pt-3'>
+                            <div class="form-group" style="margin-bottom: 0">
+                                <label for="">Time</label>
+                                <div class='input-group date' id='fromDate'>
+                                    <input type='text' name="date" required class="form-control date-time" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-md-12 pt-3'>
+                            <div class="form-group">
+                                <label for="">Password</label>
+                                <input type='text' name="password" class="form-control" />
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-11 p-3" style="background: #fff">
+                    <div class="row d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+
             </div>
         </div>
     </form>
 @endsection
 
 @push('script')
-    <script src={{ asset('js/select2.min.js') }}></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js">
+    </script>
     <script>
-        $('.summernote').summernote({
-            placeholder: 'Please enter',
-            tabsize: 1,
-            height: 100,
-            lang: 'vi-VN', // default: 'en-US'
-            toolbar: [
-                ['view', ['codeview', 'help']],
-            ],
-            callbacks: {}
+        $(function() {
+            const nDate = new Date();
+
+            $('.date-time').on('click', function() {
+                $('.input-group-addon').click();
+            });
+
+            $('#fromDate').datetimepicker({
+                minDate: nDate,
+                format: 'YYYY-MM-DD LT',
+                icons: {
+                    time: "fa fa-clock",
+                    date: "fa fa-calendar",
+                },
+            });
+            // $('#fromDate').on('dp.change', function(e){ console.log(e.date); })
         });
     </script>
 @endpush

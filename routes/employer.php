@@ -45,4 +45,5 @@ Route::middleware('auth:store')->group(function () {
     Route::get('/change/prioritize', [PrioritizeController::class, 'active'])->name('change.prioritize');
     Route::get('/candidate/agree/{id}', [AgreeController::class, 'agree'])->name('message.agree');
     Route::post('/candidate/agree/{id}', [AgreeController::class, 'sendMailAgree'])->name('message.agree');
+    Route::post('/candidate/zoom/{id}', [AgreeController::class, 'getZoomInfo'])->name('zoom.info');
 });
