@@ -13,7 +13,7 @@ use App\Enums\Prioritize;
 return [
 
     ApplicationStatus::class => [
-        ApplicationStatus::PENDING => 'Applied',
+        ApplicationStatus::PENDING => 'Pending',
         ApplicationStatus::ACCEPT => 'Accept',
         ApplicationStatus::CANCELED => 'Refuse',
         ApplicationStatus::OUTDATED => 'Expired',

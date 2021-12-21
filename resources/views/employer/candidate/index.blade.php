@@ -21,6 +21,12 @@
         .pagination {
             justify-content: center;
         }
+        .view_meet {
+            cursor: pointer;
+        }
+        .view_meet span:hover {
+            color: blueviolet;
+        }
 
         @media only screen and (min-width: 576px) {
             .modal-dialog {
@@ -48,6 +54,8 @@
                         <th>ID</th>
                         <th>User Name</th>
                         <th>Recruitment</th>
+                        <th>Status</th>
+                        <th>Meeting</th>
                         <th>Apply At</th>
                         <th>Action</th>
                     </tr>
@@ -58,6 +66,14 @@
                             <td>{{ $item->id }}</td>
                             <td><span>{{ $item->user->name }}</span></td>
                             <td><span>{{ $item->recruitment->name }}</span></td>
+                            <td><span>{{ \App\Enums\ApplicationStatus::getDescription($item->status) }}</span></td>
+                            <td>
+                                <span>
+                                    @if ($item->status == \App\Enums\ApplicationStatus::ACCEPT)
+                                        <a class="view_meet" data-url="{{ route('employer.zoom.info', $item->id) }}"><span>View Meeting</span></a>
+                                    @endif
+                                </span>
+                            </td>
                             <td><span>{{ date('d/m/Y', strtotime($item->apply_date)) }}</span></td>
                             <td>
                                 <button type="button" data-url="{{ route('employer.candidate.show', $item->user->id) }}"
@@ -82,41 +98,7 @@
         </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog modal-lg">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">User Profile</h4>
-                </div>
-                <div class="modal-body">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th width="20%">Education</th>
-                                <th width="25%">Experience</th>
-                                <th width="15%">Language</th>
-                                <th width="40%">Quote</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="education"></td>
-                                <td id="exp"></td>
-                                <td id="lang"></td>
-                                <td id="quote"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
+    @include('employer.candidate._modal')
 @endsection
 
 @push('script')
@@ -150,5 +132,31 @@
                 }
             });
         });
+        $('.view_meet').on('click', function () {
+            url = $(this).attr('data-url');
+            $.ajax({
+                url: url,
+                type: 'post',
+                data: {
+                    _token: $('meta[name=csrf-token]').attr('content')
+                },
+                success: function(data) {
+                    array = Object.entries(data);
+
+                    array.forEach(element => {
+                        if (element[0] == 'zoom_url') {
+                            $('#zoom_url').attr('href', element[1]).html(element[1]);
+                        } else {
+                            $('#' + element[0]).html(element[1]);
+                        }
+                    });
+
+                    $('#exampleModalCenter').modal('show');
+                },
+                error: function(e) {
+                    console.log(e.message);
+                }
+            });
+        })
     </script>
 @endpush

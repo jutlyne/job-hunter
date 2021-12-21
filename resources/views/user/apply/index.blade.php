@@ -46,7 +46,7 @@
                                                 <td>
                                                     <div class="table-list-title">
                                                         <h3><a href="#" title="">{{ $item->recruitment->category->name }}
-                                                                / {{ $item->recruitment->level }}</a></h3>
+                                                                / {{ \App\Enums\LevelJob::getDescription($item->recruitment->level) }}</a></h3>
                                                     </div>
                                                 </td>
                                                 <td>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Employer;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\MailAgreeRequest;
 use App\Models\Employer;
 use App\Repositories\Application\Employer\ApplicationRepository;
 use Illuminate\Http\Request;
@@ -32,10 +33,15 @@ class AgreeController extends Controller
         return view('employer.candidate.agree', compact('info'));
     }
 
-    public function sendMailAgree(Request $request)
+    public function sendMailAgree(MailAgreeRequest $request)
     {
         $this->applicationRepository->sendMailAgree($request->all());
 
         return redirect()->route('employer.candidate.index');
+    }
+
+    public function getZoomInfo($id)
+    {
+        return response()->json($this->applicationRepository->getZoomInfo($id));
     }
 }
