@@ -21,9 +21,11 @@ class CheckStatus
     {
         $response = $next($request);
         //If the status is not approved redirect to login 
-        if (Auth::check() && Auth::user()->status != UserStatus::ACTIVE) {
+        if (Auth::check() && Auth::user()->status == UserStatus::BLOCK) {
             Auth::logout();
             return redirect('/login')->with('error', 'Your account is block');
+        } elseif (Auth::check() && Auth::user()->status == UserStatus::PENDING) {
+            return redirect('/verify')->with('error', 'You need to confirm before logging in');
         }
 
         return $response;

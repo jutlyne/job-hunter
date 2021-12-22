@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Employer;
-use App\Models\Staff;
-use App\Repositories\Employer\EmployerRepository;
-use App\Http\Requests\Admin\Employer\Update as EmployerUpdateRequest;
-use App\Http\Requests\Admin\Employer\Create as EmployerCreateRequest;
-use App\Repositories\Province\ProvinceRepository;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Employer\Update as EmployerUpdateRequest;
+use App\Http\Requests\Admin\Employer\Create as EmployerCreateRequest;
+use App\Models\Staff;
+use App\Models\Employer;
+use App\Models\Application;
+use App\Models\Recruitment;
+use App\Repositories\Employer\EmployerRepository;
+use App\Repositories\Province\ProvinceRepository;
 
 
 class EmployerController extends Controller
@@ -23,8 +26,7 @@ class EmployerController extends Controller
     public function __construct(
         EmployerRepository $employerRepository,
         ProvinceRepository $provinceRepository
-    )
-    {
+    ) {
         $this->employerRepository = $employerRepository;
         $this->provinceRepository = $provinceRepository;
     }
@@ -37,7 +39,7 @@ class EmployerController extends Controller
     {
         $employers = $this->employerRepository->getListEmployerFilter($request->get('province_id'));
         $provinces = $this->provinceRepository->getListProvinceByEmployer();
-        
+
         return view('admin.employers.index', compact('employers', 'provinces'));
     }
 
@@ -62,23 +64,33 @@ class EmployerController extends Controller
     public function store(EmployerCreateRequest $request)
     {
         $request['phone_verified_at'] = Carbon::now();
-        
+
         $attributes = $request->except(['password']);
         if ($request->hasFile('thumbnail')) {
-            $filename = Storage::disk('public')->put('employer', $request->thumbnail, 'public');
+            $filename = Storage::disk('s3')->put('employer', $request->thumbnail, '');
             $attributes['thumbnail'] = $filename;
         }
         if ($request->hasFile('public')) {
-            $filename = Storage::disk('public')->put('avatars', $request->avatar, 'public');
+            $filename = Storage::disk('s3')->put('avatars', $request->avatar, '');
             $attributes['avatar'] = $filename;
         }
         $attributes['status'] = 1;
 
         $employers = Employer::create($attributes);
         $request['employer_id'] = $employers->id;
-        $credentials = $request->only(['phone', 'password', 'name','phone_verified_at', 'employer_id']);
+        $to_email = $request->email;
+        $data = [
+            'mail' => $to_email,
+            'password' => $request->password,
+            'name' => $request->name
+        ];
+        Mail::send('mail.create-employer', $data, function ($message) use ($to_email) {
+            $message->to($to_email)->subject('Gửi thông báo tạo nhà tuyển dụng');
+            $message->from('vocaoky290999@gmail.com', 'Jobs Hunt');
+        });
+        $credentials = $request->only(['phone', 'password', 'email', 'name', 'phone_verified_at', 'employer_id']);
+        Staff::create($credentials);
 
-        $staff = Staff::create($credentials);
         return \redirect()->route('admin.employers.index');
     }
 
@@ -106,7 +118,7 @@ class EmployerController extends Controller
         $provinces = $this->provinceRepository->all();
         $employer = $this->employerRepository->getInfo($id);
 
-        return view('admin.employers.edit', \compact('employer','provinces'));
+        return view('admin.employers.edit', \compact('employer', 'provinces'));
     }
 
     /**
@@ -123,26 +135,26 @@ class EmployerController extends Controller
         $schedule = $request->only(['start_time', 'end_time', 'number_of_slots']);
 
         if ($request->hasFile('thumbnail')) {
-            $filename = Storage::disk('public')->put('employer', $request->thumbnail, 'public');
+            $filename = Storage::disk('s3')->put('employer', $request->thumbnail, '');
             $attributes['thumbnail'] = $filename;
             if ($employer->thumbnail) {
-                Storage::disk('public')->delete($employer->thumbnail);
+                Storage::disk('s3')->delete($employer->thumbnail);
             }
         } else {
             unset($attributes['thumbnail']);
         }
 
         if ($request->hasFile('avatar')) {
-            $filename = Storage::disk('public')->put('avatars', $request->avatar, 'public');
+            $filename = Storage::disk('s3')->put('avatars', $request->avatar, '');
             $attributes['avatar'] = $filename;
             if ($employer->avatar) {
-                Storage::disk('public')->delete($employer->avatar);
+                Storage::disk('s3')->delete($employer->avatar);
             }
         } else {
             unset($attributes['avatar']);
         }
 
-        if($request->filled('password')) {
+        if ($request->filled('password')) {
             $hash = Hash::make($request->get('password'));
             Staff::where('employer_id', $employer->id)->update(['password' => $hash]);
         }
@@ -159,6 +171,10 @@ class EmployerController extends Controller
      */
     public function destroy(Employer $employer)
     {
+        $id = $employer->id;
+        Application::where('employer_id', $id)->delete();
+        Recruitment::where('employer_id', $id)->delete();
+        Staff::where('employer_id', $id)->delete();
         $employer->delete();
 
         return redirect()->back();
@@ -167,9 +183,9 @@ class EmployerController extends Controller
     public function requestForm()
     {
         $employers = $this->employerRepository
-                    ->where('status',0)
-                    ->orWhereNull('status')
-                    ->paginate(config('paginate.limit'));
+            ->where('status', 0)
+            ->orWhereNull('status')
+            ->paginate(config('paginate.limit'));
 
         return view('admin.employers.request', compact('employers'));
     }
@@ -179,14 +195,14 @@ class EmployerController extends Controller
         $employer = $this->employerRepository->getInfo($id);
 
         $this->employerRepository->changePrioritize($employer);
-        
+
         return redirect()->back()->with('success', 'Kích hoạt ưu tiên cho employer thành công');
     }
 
     public function updateStatus($id)
     {
         $this->employerRepository->changeStatus($id);
-        
+
         return redirect()->back()->with('success', 'Chuyển đổi trạng thái thành công');
     }
 }

@@ -44,11 +44,11 @@ class ProfileController extends Controller
             $f = finfo_open();
             $extension = finfo_buffer($f, $image, FILEINFO_EXTENSION);
             $filename = "Employers/$filename.$extension";
-            Storage::disk('public')->put($filename, $image, 'public');
+            Storage::disk('s3')->put($filename, $image, '');
             $attributes['thumbnail'] = $filename;
             $employer = $this->employerRepository->find($employerId);
             if ($employer->thumbnail) {
-                Storage::disk('public')->delete($employer->thumbnail);
+                Storage::disk('s3')->delete($employer->thumbnail);
             }
         } else {
             unset($attributes['thumbnail']);
@@ -61,7 +61,7 @@ class ProfileController extends Controller
     {
         $employerId = auth('store')->user()->employer_id;
         if ($request->banner) {
-            $filename = Storage::disk('public')->put('employers', $request->banner, 'public');
+            $filename = Storage::disk('s3')->put('employers', $request->banner, '');
             $attributes['thumbnail'] = $filename;
             $employer = $this->employerRepository->find($employerId);
             $employer->images()->create([

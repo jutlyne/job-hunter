@@ -48,26 +48,27 @@ Route::middleware('guest')->group(function () {
     // User Register
     Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('show_register');
     Route::post('/register', [RegisterController::class, 'register'])->name('register');
-
 });
 
 Route::middleware('auth:user')->group(function () {
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/verify', [RegisterController::class, 'showVerifyForm'])->name('verify');
-    Route::post('/verify', [RegisterController::class, 'register'])->name('verify');
+    Route::post('/verify', [RegisterController::class, 'verify'])->name('verify');
+    Route::post('/verify/re-sent', [RegisterController::class, 'resend'])->name('verify.resent');
+    Route::middleware('checkstatus')->group(function () {
+        Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+        // User profile
+        Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+        Route::put('/profile', [ProfileController::class, 'update']);
 
-    // User profile
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-    Route::put('/profile', [ProfileController::class, 'update']);
-
-    Route::get('/password', [ProfileController::class, 'password'])->name('password');
-    Route::post('/password', [ProfileController::class, 'passwordChange'])->name('password.change');
-    //apply job 
-    Route::get('/apply/job', [ApplyController::class, 'apply'])->name('apply.job');
-    Route::get('/apply/user-job', [ApplyController::class, 'index'])->name('apply');
-    Route::get('/apply/user-destroy', [ApplyController::class, 'destroy'])->name('apply.destroy');
-    //resume
-    Route::get('/resume', [ResumeController::class, 'index'])->name('resume');
+        Route::get('/password', [ProfileController::class, 'password'])->name('password');
+        Route::post('/password', [ProfileController::class, 'passwordChange'])->name('password.change');
+        //apply job 
+        Route::get('/apply/job', [ApplyController::class, 'apply'])->name('apply.job');
+        Route::get('/apply/user-job', [ApplyController::class, 'index'])->name('apply');
+        Route::get('/apply/user-destroy', [ApplyController::class, 'destroy'])->name('apply.destroy');
+        //resume
+        Route::get('/resume', [ResumeController::class, 'index'])->name('resume');
+    });
 });
 
 // Blog

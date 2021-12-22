@@ -105,7 +105,7 @@
                                             class="far fa-trash-alt"></i></button>
                                 </form>
 
-                                <button type="button" data-id="{{ $item->id }}" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye"></i></button>
+                                <button type="button" data-id="{{ $item->id }}" class="btn btn-info btn-sm" data-toggle="modal"><i class="fa fa-eye"></i></button>
 
                             </td>
                         </tr>
@@ -140,7 +140,7 @@
                         <div class="profile-child"></div>
                     </div>
                     <div class="benefit">
-                        <h4>Education + Experience</h4>
+                        <h4>Benefit</h4>
                         <div class="benefit-child"></div>
                     </div>
                 </div>
@@ -170,7 +170,7 @@
             id = $(this).attr('data-id');
             console.log(id);
             $.ajax({
-                url: "/admin2020/recruitment/info/" + id,
+                url: "/admin2021/recruitment/info/" + id,
                 type: 'get',
                 success: function (data) {
                     info = data.data;
@@ -179,6 +179,7 @@
                     $('.preview-child').html(info.preview_text)
                     $('.profile-child').html(info.profile_text)
                     $('.benefit-child').html(info.benefit_text)
+                    $('#myModal').modal('show');
                 },
                 error: function (e) {
                     console.log(e.message);

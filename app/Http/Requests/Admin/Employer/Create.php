@@ -25,7 +25,8 @@ class Create extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:30',
+            'name' => 'required|max:50',
+            'email' => 'required|unique:staff,email',
             // 'thumbnail' => 'nullable|mimes:jpeg,png,jpg,gif,svg',
             // 'avatar' => 'nullable|mimes:jpeg,png,jpg,gif,svg',
             'description' => 'nullable',

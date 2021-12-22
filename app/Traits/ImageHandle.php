@@ -17,7 +17,7 @@ trait ImageHandle
             $fileName = Str::uuid() . '.' . $extension;
             $fullPath = 'blogs/' . time() . $fileName;
 
-            Storage::disk('public')->put($fullPath, file_get_contents($item), 'public');
+            Storage::disk('s3')->put($fullPath, file_get_contents($item), 'public');
             $storagePath[]  = Storage::disk('public')->url($fullPath);
             $arrPath[] = $fullPath;
         };
@@ -33,7 +33,7 @@ trait ImageHandle
         $explodeUrl = explode('/',$request->img);
         $url = 'blogs/'. end($explodeUrl);
 
-        Storage::disk('public')->delete($url);
+        Storage::disk('s3')->delete($url);
         
         return response()->json([
             'messenger' => 'Done'

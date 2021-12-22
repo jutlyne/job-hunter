@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\UserStatus;
 use App\Http\Controllers\Controller;
 use App\Repositories\User\UserRepository;
 use Illuminate\Http\Request;
@@ -97,7 +98,7 @@ class UserController extends Controller
 
         $user = User::findOrFail($id);
         
-        $user->status == 0 ? $user->status = 1 : $user->status = 0;
+        $user->status == UserStatus::BLOCK ? $user->status = UserStatus::ACTIVE : $user->status = UserStatus::BLOCK;
 
         $user->save();
 

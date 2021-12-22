@@ -82,7 +82,7 @@
             seft = $(this);
             id = $(this).data('id');
             $.ajax({
-                url: "/admin2020/users/status/" + id,
+                url: "/admin2021/users/status/" + id,
                 type: 'get',
                 success: function (data) {
                     if (data.status == 1) {

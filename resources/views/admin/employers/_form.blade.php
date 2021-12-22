@@ -9,8 +9,13 @@
         value="{{ $employer->phone ?? old('phone') }}" required>
 </div>
 <div class="form-group">
+    <label for="employer-phone">Email (<span class="text-danger">&#42;</span>)</label>
+    <input class="form-control" id="email" type="text" placeholder="email" name="email"
+        value="{{ $employer->staff->email ?? old('email') }}" required>
+</div>
+<div class="form-group">
     <label for="password">Password</label>
-    <input class="form-control" id="password" type="password" placeholder="password" name="password">
+    <input class="form-control" id="password" autocomplete="off" type="password" placeholder="password" name="password">
 </div>
 <div class="form-group">
     <label for="employer-avatar">Avatar</label>

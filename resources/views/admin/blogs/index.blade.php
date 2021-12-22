@@ -74,9 +74,9 @@
                         <th>Image</th>
                         <th>Slug</th>
                         <th>Description</th>
-                        <th>Seo title</th>
+                        {{-- <th>Seo title</th>
                         <th>Seo description</th>
-                        <th>Seo keyword</th>
+                        <th>Seo keyword</th> --}}
                         <th>Category</th>
                         <th>Action</th>
                     </tr>
@@ -92,9 +92,9 @@
                                 </td>
                             <td><span>{{ $item->slug }}</span></td>
                             <td><span>{{ $item->description }}</span></td>
-                            <td><span>{{ $item->seo_title }}</span></td>
+                            {{-- <td><span>{{ $item->seo_title }}</span></td>
                             <td><span>{{ $item->seo_description }}</span></td>
-                            <td><span>{{ $item->seo_keyword }}</span></td>
+                            <td><span>{{ $item->seo_keyword }}</span></td> --}}
                             <td>
                                 <span>
                                 @foreach ($item->blogCategories as $itemCategory)

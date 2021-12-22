@@ -61,12 +61,12 @@ class Employer extends Model
 
     public function getAvatarUrlAttribute()
     {
-        return ($this->thumbnail) ? Storage::disk('public')->url($this->avatar) : asset('img/default_company.jpg');
+        return ($this->thumbnail) ? Storage::disk('s3')->url($this->avatar) : asset('img/default_company.jpg');
     }
 
     public function getThumbnailUrlAttribute()
     {
-        return ($this->thumbnail) ? Storage::disk('public')->url($this->thumbnail) : asset('img/default_company.jpg');
+        return ($this->thumbnail) ? Storage::disk('s3')->url($this->thumbnail) : asset('img/default_company.jpg');
     }
 
     public function images()
