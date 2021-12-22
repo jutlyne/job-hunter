@@ -30,7 +30,7 @@ class Recruitment extends Model
 
     public function getRecruitmentUrlAttribute()
     {
-        return ($this->attributes['thumbnail']) ? Storage::disk('s3')->url($this->attributes['thumbnail']) : '';
+        return ($this->attributes['thumbnail']) ? Storage::disk()->url($this->attributes['thumbnail']) : '';
     }
 
     public function recruitmentCategories()

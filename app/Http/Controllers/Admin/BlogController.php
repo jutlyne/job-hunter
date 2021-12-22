@@ -106,10 +106,10 @@ class BlogController extends Controller
         $explode = explode(',', $arrContent[0]);
         
         foreach ($explode as $item) {
-            Storage::disk('public')->delete($item);
+            Storage::disk()->delete($item);
         }
 
-        Storage::disk('public')->delete(Blog::findOrFail($id)->thumbnail);
+        Storage::disk()->delete(Blog::findOrFail($id)->thumbnail);
         Blog::where(['id' => $id])->delete();
         BlogCategory::where('blog_id', $id)->delete();
         

@@ -24,7 +24,7 @@ class BaseService
         @list(, $file_data) = explode(',', $file_data);
         $imageName = time().rand(1, 1000).'.'.'png';
         $folderName = $imageName;
-        Storage::disk('s3')->put($folderName, base64_decode($file_data), '');
+        Storage::disk()->put($folderName, base64_decode($file_data), '');
 
         return $imageName;
     }

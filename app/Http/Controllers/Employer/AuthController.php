@@ -191,9 +191,9 @@ class AuthController extends Controller
     {
         $this->validate($request, ['avatar' => 'required|mimes:jpeg,png,jpg,gif,svg',]);
         $employer = auth('store')->user()->employer;
-        $filename = Storage::disk('public')->put('avatars', $request->avatar, 'public');
+        $filename = Storage::disk()->put('avatars', $request->avatar, '');
         if ($employer->avatar) {
-            Storage::disk('public')->delete($employer->avatar);
+            Storage::disk()->delete($employer->avatar);
         }
         $employer->avatar = $filename;
         $employer->save();

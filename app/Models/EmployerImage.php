@@ -14,6 +14,6 @@ class EmployerImage extends Model
 
     public function getImageUrlAttribute()
     {
-        return Storage::disk('s3')->url($this->attributes['url']);
+        return Storage::disk()->url($this->attributes['url']);
     }
 }

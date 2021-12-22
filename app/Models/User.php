@@ -55,7 +55,7 @@ class User extends Authenticatable
 
     public function getAvatarUrlAttribute()
     {
-        return isset($this->avatar) ? Storage::disk('public')->url($this->avatar) : asset('img/default_user_banner.png');
+        return isset($this->avatar) ? Storage::disk()->url($this->avatar) : asset('img/default_user_banner.png');
     }
 
     public function setPasswordAttribute($value)

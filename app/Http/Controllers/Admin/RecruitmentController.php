@@ -126,7 +126,7 @@ class RecruitmentController extends Controller
      */
     public function destroy($id)
     {
-        Storage::disk('public')->delete(Recruitment::findOrFail($id)->thumbnail);
+        Storage::disk()->delete(Recruitment::findOrFail($id)->thumbnail);
         Recruitment::where(['id' => $id])->delete();
         
         return redirect()->route('admin.recruitment.index');

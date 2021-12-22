@@ -64,10 +64,10 @@ class ProfileRepositoryEloquent extends BaseRepository implements ProfileReposit
 
         if (isset($params['avatar'])) {
 
-            $filename = Storage::disk('public')->put('admin', $params['avatar'], 'public');
+            $filename = Storage::disk()->put('admin', $params['avatar'], '');
             
             $data['avatar'] = $filename;
-            Storage::disk('public')->delete(Admin::findOrFail($params['id'])->avatar);
+            Storage::disk()->delete(Admin::findOrFail($params['id'])->avatar);
         }
 
         $admin = Admin::where('id', $params['id'])->update($data);

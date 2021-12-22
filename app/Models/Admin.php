@@ -29,7 +29,7 @@ class Admin extends Authenticatable
 
     public function getAvatarUrlAttribute()
     {
-        return isset($this->avatar) ? Storage::disk('public')->url($this->avatar) : null;
+        return isset($this->avatar) ? Storage::disk()->url($this->avatar) : null;
     }
 
     public function role()

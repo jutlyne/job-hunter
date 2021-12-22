@@ -67,11 +67,11 @@ class EmployerController extends Controller
 
         $attributes = $request->except(['password']);
         if ($request->hasFile('thumbnail')) {
-            $filename = Storage::disk('s3')->put('employer', $request->thumbnail, '');
+            $filename = Storage::disk()->put('employer', $request->thumbnail, '');
             $attributes['thumbnail'] = $filename;
         }
         if ($request->hasFile('public')) {
-            $filename = Storage::disk('s3')->put('avatars', $request->avatar, '');
+            $filename = Storage::disk()->put('avatars', $request->avatar, '');
             $attributes['avatar'] = $filename;
         }
         $attributes['status'] = 1;
@@ -135,20 +135,20 @@ class EmployerController extends Controller
         $schedule = $request->only(['start_time', 'end_time', 'number_of_slots']);
 
         if ($request->hasFile('thumbnail')) {
-            $filename = Storage::disk('s3')->put('employer', $request->thumbnail, '');
+            $filename = Storage::disk()->put('employer', $request->thumbnail, '');
             $attributes['thumbnail'] = $filename;
             if ($employer->thumbnail) {
-                Storage::disk('s3')->delete($employer->thumbnail);
+                Storage::disk()->delete($employer->thumbnail);
             }
         } else {
             unset($attributes['thumbnail']);
         }
 
         if ($request->hasFile('avatar')) {
-            $filename = Storage::disk('s3')->put('avatars', $request->avatar, '');
+            $filename = Storage::disk()->put('avatars', $request->avatar, '');
             $attributes['avatar'] = $filename;
             if ($employer->avatar) {
-                Storage::disk('s3')->delete($employer->avatar);
+                Storage::disk()->delete($employer->avatar);
             }
         } else {
             unset($attributes['avatar']);
