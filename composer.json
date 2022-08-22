@@ -10,7 +10,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "alexpechkarev/google-maps": "^8.0",
-        "bensampo/laravel-enum": "^3.2",
+        "bensampo/laravel-enum": "^4.2",
         "ckfinder/ckfinder-laravel-package": "v3.5.1.6",
         "doctrine/dbal": "^3.0",
         "fideloper/proxy": "^4.4",
