@@ -22,20 +22,3 @@ updates:
     commit-message:
       prefix: "Composer"
       include: "scope"
-
-  - package-ecosystem: "pip"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    # Include a list of updated dependencies
-    # with a prefix determined by the dependency group
-    commit-message:
-      prefix: "pip prod"
-      prefix-development: "pip dev"
-      include: "scope"
- - package-ecosystem: "bundler"
-    # Raise pull requests to update vendored dependencies that are checked in to the repository
-    vendor: true
-    directory: "/"
-    schedule:
-      interval: "weekly"
