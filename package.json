@@ -33,7 +33,7 @@
         "@tinymce/tinymce-vue": "^4.0.0",
         "bootstrap4-toggle": "^3.6.1",
         "ckeditor4": "^4.15.1",
-        "@ckeditor/ckeditor5-ckfinder": "^29.2.0",
+        "@ckeditor/ckeditor5-ckfinder": "^36.0.1",
         "summernote": "^0.8.18",
         "daterangepicker": "^3.1.0",
         "dotenv": "^6.2.0",
